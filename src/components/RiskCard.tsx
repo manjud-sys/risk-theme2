@@ -34,33 +34,33 @@ export function RiskCard({ title, count, countPercentage, arr, arrPercentage, va
 
   return (
     <div
-      className={`flex-1 p-[var(--space-sm)] ${variantStyles[variant]} flex flex-col items-center justify-center relative cursor-pointer hover:opacity-90 transition-opacity min-h-[140px]`}
+      className={`flex-1 p-[var(--space-sm)] ${variantStyles[variant]} flex flex-col items-center justify-center relative cursor-pointer hover:opacity-90 transition-opacity min-h-[120px]`}
       style={mediumStyle}
       onClick={onClick}
     >
-      <p className="text-xs font-semibold mb-2 uppercase tracking-wide">{title}</p>
+      <p className="text-xs font-semibold mb-1.5 uppercase tracking-wide">{title}</p>
 
       <div className="flex items-baseline gap-1 mb-0.5">
-        <p className="text-xl font-bold">{arr}</p>
-        <p className="text-sm font-semibold opacity-80">({arrPercentage}%)</p>
+        <p className="text-base font-bold">{arr}</p>
+        <p className="text-xs font-semibold opacity-80">({arrPercentage}%)</p>
       </div>
-      <p className="text-xs opacity-70 mb-3">ARR at risk</p>
+      <p className="text-xs opacity-70 mb-2">ARR at risk</p>
 
       <div className="flex items-baseline gap-1 mb-0.5">
-        <p className="text-2xl font-bold">{count}</p>
-        <p className="text-sm font-semibold opacity-80">({countPercentage}%)</p>
+        <p className="text-base font-bold">{count}</p>
+        <p className="text-xs font-semibold opacity-80">({countPercentage}%)</p>
       </div>
-      <p className="text-xs opacity-70 mb-2">no of customers</p>
+      <p className="text-xs opacity-70 mb-1.5">no of customers</p>
 
       {trend && (
-        <div className="flex items-center gap-2 mt-0.5">
+        <div className="flex items-center gap-1.5 mt-0.5">
           <div className={`flex items-center gap-1 ${getTrendColor()}`}>
             {trend.direction === 'up' ? (
-              <TrendingUp className="w-4 h-4" />
+              <TrendingUp className="w-3 h-3" />
             ) : (
-              <TrendingDown className="w-4 h-4" />
+              <TrendingDown className="w-3 h-3" />
             )}
-            <span className="text-base font-bold">{trend.value}</span>
+            <span className="text-xs font-bold">{trend.value}</span>
           </div>
           <p className="text-xs opacity-60">vs. last week</p>
         </div>

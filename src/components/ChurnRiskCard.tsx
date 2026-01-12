@@ -35,18 +35,18 @@ export function ChurnRiskCard({ level, count, arrAmount }: ChurnRiskCardProps) {
   return (
     <div
       className={cn(
-        "rounded-lg border-l-4 p-5 transition-all duration-200 hover:card-shadow-hover card-shadow",
+        "rounded-lg border-l-4 p-4 transition-all duration-200 hover:card-shadow-hover card-shadow",
         config.bgClass,
         config.borderClass
       )}
     >
-      <p className={cn("text-sm font-medium", config.textClass)}>
+      <p className={cn("text-xs font-medium", config.textClass)}>
         {config.label}
       </p>
-      <p className="mt-1 text-3xl font-bold text-foreground">
+      <p className="mt-1 text-base font-bold text-foreground">
         {count.toLocaleString()}
       </p>
-      <p className="mt-1 text-sm text-muted-foreground">
+      <p className="mt-0.5 text-xs text-muted-foreground">
         ${(arrAmount / 1000).toFixed(0)}K ARR
       </p>
     </div>
