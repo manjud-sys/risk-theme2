@@ -81,86 +81,86 @@ export function CustomerTable({ customers, riskFilter, billingStatusFilter, risk
         <table className="w-full">
           <thead style={{ background: 'linear-gradient(to right, #fff8f4, #fff0e9)', borderBottom: '1px solid #ffd9c7' }}>
             <tr>
-              <th className="px-[var(--space-md)] py-[var(--space-sm)] text-left para-semibold text-[var(--neutral-900)]">Customer</th>
-              <th className="px-[var(--space-md)] py-[var(--space-sm)] text-left para-semibold text-[var(--neutral-900)]">Plan & Subscription</th>
-              <th className="px-[var(--space-md)] py-[var(--space-sm)] text-left para-semibold text-[var(--neutral-900)]">Churn Risk</th>
-              <th className="px-[var(--space-md)] py-[var(--space-sm)] text-left para-semibold text-[var(--neutral-900)]">Risk Theme</th>
-              <th className="px-[var(--space-md)] py-[var(--space-sm)] text-left para-semibold text-[var(--neutral-900)]">Actions</th>
+              <th className="px-[var(--space-xs)] py-[var(--space-xs)] text-left caption-semibold text-[var(--neutral-900)]">Customer</th>
+              <th className="px-[var(--space-xs)] py-[var(--space-xs)] text-left caption-semibold text-[var(--neutral-900)]">Plan & Subscription</th>
+              <th className="px-[var(--space-xs)] py-[var(--space-xs)] text-left caption-semibold text-[var(--neutral-900)]">Churn Risk</th>
+              <th className="px-[var(--space-xs)] py-[var(--space-xs)] text-left caption-semibold text-[var(--neutral-900)]">Risk Theme</th>
+              <th className="px-[var(--space-xs)] py-[var(--space-xs)] text-left caption-semibold text-[var(--neutral-900)]">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-[var(--neutral-200)]">
             {paginatedCustomers.length === 0 ? (
               <tr>
-                <td colSpan={5} className="px-[var(--space-md)] py-[var(--space-lg)] text-center">
-                  <p className="para-regular text-[var(--neutral-500)]">No customers found matching the selected filters</p>
+                <td colSpan={5} className="px-[var(--space-xs)] py-[var(--space-sm)] text-center">
+                  <p className="caption-regular text-[var(--neutral-500)]">No customers found matching the selected filters</p>
                 </td>
               </tr>
             ) : (
               paginatedCustomers.map((customer) => (
               <tr key={customer.id} className="hover:bg-[var(--neutral-50)] transition-colors">
-                <td className="px-[var(--space-md)] py-[var(--space-sm)] para-medium text-[var(--neutral-900)]">{customer.name}</td>
-                <td className="px-[var(--space-md)] py-[var(--space-sm)] para-regular text-[var(--neutral-700)]">
-                  <div className="flex items-center gap-[var(--space-si)] mb-[var(--space-si)]">
-                    <Package className="h-4 w-4" style={{ color: '#ffab84' }} />
-                    <span className="para-semibold" style={{ color: '#ffab84' }}>{customer.subscription_plan}</span>
+                <td className="px-[var(--space-xs)] py-[var(--space-xs)] caption-medium text-[var(--neutral-900)]">{customer.name}</td>
+                <td className="px-[var(--space-xs)] py-[var(--space-xs)] caption-regular text-[var(--neutral-700)]">
+                  <div className="flex items-center gap-1 mb-0.5">
+                    <Package className="h-3 w-3" style={{ color: '#ffab84' }} />
+                    <span className="caption-semibold" style={{ color: '#ffab84' }}>{customer.subscription_plan}</span>
                   </div>
-                  <div className="flex items-center gap-[var(--space-si)] caption-regular text-[var(--neutral-500)]">
-                    <CreditCard className="h-3 w-3" />
+                  <div className="flex items-center gap-1 text-xs text-[var(--neutral-500)]">
+                    <CreditCard className="h-2.5 w-2.5" />
                     <span>{customer.subscription_id}</span>
                   </div>
                 </td>
-                <td className="px-[var(--space-md)] py-[var(--space-sm)]">
+                <td className="px-[var(--space-xs)] py-[var(--space-xs)]">
                   <div className="relative inline-block">
                     <div
-                      className={`inline-flex items-center gap-[var(--space-si)] px-[var(--space-xs)] py-[var(--space-mi)] rounded-[var(--radius-md)] ${getRiskColor(customer.churn_score)} cursor-help`}
+                      className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded ${getRiskColor(customer.churn_score)} cursor-help`}
                       onMouseEnter={() => setHoveredRisk(customer.id)}
                       onMouseLeave={() => setHoveredRisk(null)}
                     >
-                      <span className="text-bg font-bold">{customer.churn_score}</span>
-                      <span className="para-semibold">{getRiskLabel(customer.churn_score)}</span>
-                      <Info className="w-3.5 h-3.5 opacity-60" />
+                      <span className="text-xs font-bold">{customer.churn_score}</span>
+                      <span className="caption-semibold">{getRiskLabel(customer.churn_score)}</span>
+                      <Info className="w-3 h-3 opacity-60" />
                     </div>
 
                     {hoveredRisk === customer.id && (
-                      <div className="absolute z-50 w-64 bg-white rounded-lg shadow-xl border border-[var(--neutral-200)] p-[var(--space-sm)] left-0 top-full mt-2">
-                        <p className="caption-regular text-[var(--neutral-700)]">
-                          Scores range from 0–100. Higher scores indicate higher churn risk relative to other customers.
+                      <div className="absolute z-50 w-48 bg-white rounded-lg shadow-xl border border-[var(--neutral-200)] p-2 left-0 top-full mt-1">
+                        <p className="text-xs text-[var(--neutral-700)]">
+                          Scores range from 0–100. Higher scores indicate higher churn risk.
                         </p>
                       </div>
                     )}
                   </div>
                 </td>
-                <td className="px-[var(--space-md)] py-[var(--space-sm)]">
+                <td className="px-[var(--space-xs)] py-[var(--space-xs)]">
                   {(() => {
                     const theme = getRiskTheme(customer);
                     return (
-                      <div className="inline-flex items-center gap-[var(--space-si)]">
+                      <div className="inline-flex items-center gap-1">
                         {theme.trend === 'up' ? (
-                          <TrendingUp size={20} style={{ color: theme.color }} />
+                          <TrendingUp size={14} style={{ color: theme.color }} />
                         ) : (
-                          <TrendingDown size={20} style={{ color: theme.color }} />
+                          <TrendingDown size={14} style={{ color: theme.color }} />
                         )}
-                        <span className="para-medium text-[var(--neutral-900)]">
+                        <span className="caption-medium text-[var(--neutral-900)]">
                           {theme.name}
                         </span>
                       </div>
                     );
                   })()}
                 </td>
-                <td className="px-[var(--space-md)] py-[var(--space-sm)]">
-                  <div className="flex flex-col gap-[var(--space-si)]">
-                    <button className="flex items-center justify-center gap-[var(--space-si)] px-[var(--space-sm)] py-[var(--space-mi)] text-white rounded-[var(--radius-md)] transition-colors para-medium" style={{ backgroundColor: '#ffab84' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#ff9570'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#ffab84'}>
-                      <Gift size={16} />
-                      Send Retention Offer
+                <td className="px-[var(--space-xs)] py-[var(--space-xs)]">
+                  <div className="flex flex-col gap-1">
+                    <button className="flex items-center justify-center gap-1 px-2 py-1 text-white rounded transition-colors text-xs font-medium whitespace-nowrap" style={{ backgroundColor: '#ffab84' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#ff9570'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#ffab84'}>
+                      <Gift size={12} />
+                      Send Offer
                     </button>
                     <button
-                      className="flex items-center justify-center gap-[var(--space-si)] px-[var(--space-sm)] py-[var(--space-mi)] bg-[var(--neutral-0)] border rounded-[var(--radius-md)] transition-colors para-medium"
+                      className="flex items-center justify-center gap-1 px-2 py-1 bg-[var(--neutral-0)] border rounded transition-colors text-xs font-medium whitespace-nowrap"
                       style={{ borderColor: '#ffd9c7', color: '#ffab84' }}
                       onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#fff8f4'}
                       onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'white'}
                       onClick={() => handleViewDetails(customer)}
                     >
-                      <FileText size={16} />
+                      <FileText size={12} />
                       View Details
                     </button>
                   </div>
@@ -172,31 +172,31 @@ export function CustomerTable({ customers, riskFilter, billingStatusFilter, risk
       </div>
 
       {totalPages > 1 && (
-        <div className="px-[var(--space-md)] py-[var(--space-sm)] border-t border-[var(--neutral-200)] flex items-center justify-between">
-          <div className="para-regular text-[var(--neutral-600)]">
-            Showing {startIndex + 1} to {Math.min(endIndex, filteredCustomers.length)} of {filteredCustomers.length} customers
+        <div className="px-[var(--space-xs)] py-[var(--space-xs)] border-t border-[var(--neutral-200)] flex items-center justify-between">
+          <div className="caption-regular text-[var(--neutral-600)]">
+            {startIndex + 1}-{Math.min(endIndex, filteredCustomers.length)} of {filteredCustomers.length}
           </div>
 
-          <div className="flex items-center gap-[var(--space-xs)]">
+          <div className="flex items-center gap-1">
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
-              className={`flex items-center gap-[var(--space-si)] px-[var(--space-sm)] py-[var(--space-mi)] rounded-[var(--radius-md)] para-medium transition-colors ${
+              className={`flex items-center gap-1 px-2 py-1 rounded text-xs font-medium transition-colors ${
                 currentPage === 1
                   ? 'bg-[var(--neutral-100)] text-[var(--neutral-400)] cursor-not-allowed'
                   : 'bg-[var(--neutral-0)] border border-[var(--neutral-300)] text-[var(--neutral-700)] hover:bg-[var(--neutral-50)]'
               }`}
             >
-              <ChevronLeft className="w-4 h-4" />
-              Previous
+              <ChevronLeft className="w-3 h-3" />
+              Prev
             </button>
 
-            <div className="flex items-center gap-[var(--space-si)]">
+            <div className="flex items-center gap-0.5">
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                 <button
                   key={page}
                   onClick={() => handlePageChange(page)}
-                  className={`px-[var(--space-sm)] py-[var(--space-mi)] rounded-[var(--radius-md)] para-medium transition-colors ${
+                  className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
                     currentPage === page
                       ? 'text-white'
                       : 'bg-[var(--neutral-0)] border border-[var(--neutral-300)] text-[var(--neutral-700)] hover:bg-[var(--neutral-50)]'
@@ -215,14 +215,14 @@ export function CustomerTable({ customers, riskFilter, billingStatusFilter, risk
             <button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className={`flex items-center gap-[var(--space-si)] px-[var(--space-sm)] py-[var(--space-mi)] rounded-[var(--radius-md)] para-medium transition-colors ${
+              className={`flex items-center gap-1 px-2 py-1 rounded text-xs font-medium transition-colors ${
                 currentPage === totalPages
                   ? 'bg-[var(--neutral-100)] text-[var(--neutral-400)] cursor-not-allowed'
                   : 'bg-[var(--neutral-0)] border border-[var(--neutral-300)] text-[var(--neutral-700)] hover:bg-[var(--neutral-50)]'
               }`}
             >
               Next
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-3 h-3" />
             </button>
           </div>
         </div>
