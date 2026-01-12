@@ -227,24 +227,24 @@ export function Dashboard() {
           </div>
         </div>
 
-        <div className="bg-[var(--neutral-0)] rounded-[var(--radius-lg)] border border-[var(--neutral-200)] overflow-hidden mb-[var(--space-lg)]">
-          <div className="px-[var(--space-md)] py-[var(--space-sm)] border-b border-[var(--neutral-200)]">
-            <div className="flex items-start justify-between">
+        <div className="bg-[var(--neutral-0)] rounded-[var(--radius-lg)] border border-[var(--neutral-200)] overflow-hidden">
+          <div className="px-[var(--space-sm)] py-[var(--space-xs)] border-b border-[var(--neutral-200)]">
+            <div className="flex items-center justify-between">
               <div>
-                <h2 className="heading-sm text-[var(--neutral-500)]">Improve Prediction Accuracy</h2>
-                <p className="para-regular text-[var(--neutral-500)] mt-[var(--space-si)]">Connect additional data sources to enhance churn predictions with behavioral and engagement signals</p>
+                <h2 className="para-bold text-[var(--neutral-700)]">Improve Prediction Accuracy</h2>
+                <p className="caption-regular text-[var(--neutral-500)] mt-[1px]">Connect data sources to enhance predictions</p>
               </div>
               <Button
                 onClick={() => setIsDataConnectorModalOpen(true)}
-                className="flex items-center gap-[var(--space-si)] whitespace-nowrap"
+                className="flex items-center gap-[var(--space-si)] whitespace-nowrap text-xs px-[var(--space-xs)] py-[var(--space-si)]"
                 style={{ backgroundColor: '#ffab84', color: 'white' }}
               >
-                <Database className="w-4 h-4" />
-                Add More Data
+                <Database className="w-3 h-3" />
+                Add Data
               </Button>
             </div>
           </div>
-          <div className="p-[var(--space-md)]">
+          <div className="p-[var(--space-xs)]">
             <DriversOfChurn
               onLearnMore={() => setIsRiskThemesModalOpen(true)}
               onThemeClick={handleRiskThemeClick}
